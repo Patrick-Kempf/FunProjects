@@ -57,7 +57,18 @@ public class Window extends JFrame {
                 g.drawLine(i * cellSize, 0,i * cellSize, img.getHeight());
             }
         }
-
+        
+        public boolean saveFrame(String path, String type) {
+            BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D iG2 = image.createGraphics();
+            paint(iG2);
+            try{
+                return ImageIO.write(image, type, new File(path.endsWith(path) ? path : path + "." + type));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+	    }
+        
         @Override
         public void paint(Graphics g) {
             refresh();
