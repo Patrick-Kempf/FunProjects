@@ -137,6 +137,16 @@ public class Cube4D extends JPanel{
 		return this.edges;
 	}
 	
+	public boolean saveFrame(String path, String type) {
+		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D iG2 = image.createGraphics();
+		paint(iG2);
+		try{
+			return ImageIO.write(image, type, new File(path.endsWith(path) ? path : path + "." + type));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void paintComponent(Graphics g) {
